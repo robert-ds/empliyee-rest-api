@@ -22,6 +22,12 @@ app.use("/api", indexRoutes);
  */
 app.use("/api", employeesRoutes);
 
+app.use((req, res, next) => {
+  res.status(404).json({
+    message: "Endpoint Not Found",
+  });
+});
+
 /**
  * Select port of server
  */
