@@ -1,0 +1,33 @@
+{
+  "name": "employee-rest-api",
+  "version": "1.0.0",
+  "description": "This project is a api rest for employee app and deploy on railway",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robert-ds/employee-rest-api.git"
+  },
+  "keywords": [
+    "employees",
+    "rest",
+    "api",
+    "node",
+    "mysql",
+    "railway"
+  ],
+  "author": "Robert Vásquez <vasquezrober09@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robert-ds/employee-rest-api/issues"
+  },
+  "homepage": "https://github.com/robert-ds/employee-rest-api#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.4.4"
+  }
+}
