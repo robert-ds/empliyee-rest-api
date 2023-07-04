@@ -46,8 +46,29 @@ export const addEmployee = async (req, res) => {
 /**
  * Update a employee method
  */
-export const updateEmployee = (req, res) => {
-  res.send("Updating employee ");
+export const updateEmployee = async (req, res) => {
+  const { id } = req.params; // Get id from param of request
+  const { name, salary } = req.body; // Get name and salary from body of request
+
+  // find and update query
+  const [user] = await pool.query(
+    "UPDATE employees SET name = IFNULL(?, name), salary = IFNULL(?, salary) WHERE id = ?",
+    [name, salary, id]
+  );
+
+  // Validate that user id exist
+  if (user.affectedRows === 0) {
+    return res.status(404).json({
+      message: "Employee not found or not exists",
+    });
+  }
+
+  // Show user updated
+  const [result] = await pool.query("SELECT * FROM employees WHERE id = ?", [
+    id,
+  ]);
+
+  res.json(result[0]);
 };
 
 /**
