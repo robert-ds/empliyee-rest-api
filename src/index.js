@@ -1,12 +1,6 @@
-/**
- * Import express
- */
-import express from "express";
-
-/**
- * Create connection of db and use it
- */
-import { pool } from "./db.js";
+import express from "express"; // Import express
+import employeesRoutes from "./routes/employees.routes.js"; // Import routes
+import indexRoutes from "./routes/index.routes.js"; // Import test connection to database
 
 /**
  * Create a new express app
@@ -14,40 +8,14 @@ import { pool } from "./db.js";
 const app = express();
 
 /**
- * Test connection of database
+ * Use index routes to test database connection
  */
-app.get("/ping", async (req, res) => {
-  const [result] = await pool.query("SELECT 1 + 1 AS employees");
-  res.json(result[0]);
-});
+app.use(indexRoutes);
 
 /**
- * Create route for GET request on /employees
+ * Use employees routes
  */
-app.get("/employees", (req, res) => {
-  res.send("All employess");
-});
-
-/**
- * Create route for POST request on /employees
- */
-app.post("/employees", (req, res) => {
-  res.send("Creating employee");
-});
-
-/**
- * Create route for PATCH request on /employees
- */
-app.patch("/employees/:id", (req, res) => {
-  res.send("Updating employee ");
-});
-
-/**
- * Create route for DELETE request on /employees
- */
-app.delete("/employees/:id", (req, res) => {
-  res.send("Deleting Employee ");
-});
+app.use(employeesRoutes);
 
 /**
  * Select port of server
