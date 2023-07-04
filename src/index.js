@@ -8,14 +8,19 @@ import indexRoutes from "./routes/index.routes.js"; // Import test connection to
 const app = express();
 
 /**
+ * Serialize data with json format
+ */
+app.use(express.json());
+
+/**
  * Use index routes to test database connection
  */
-app.use(indexRoutes);
+app.use("/api", indexRoutes);
 
 /**
  * Use employees routes
  */
-app.use(employeesRoutes);
+app.use("/api", employeesRoutes);
 
 /**
  * Select port of server
