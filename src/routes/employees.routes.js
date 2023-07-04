@@ -1,5 +1,6 @@
 import { Router } from "express"; // Import Router to express
 import {
+  getEmployee,
   getEmployees,
   addEmployee,
   updateEmployee,
@@ -15,6 +16,11 @@ const router = Router();
  * Create route for GET request on /employees
  */
 router.get("/employees", getEmployees);
+
+/**
+ * Create route for GET request
+ */
+router.get("/employees/:id", getEmployee);
 
 /**
  * Create route for POST request on /employees
